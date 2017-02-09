@@ -542,7 +542,7 @@ function ldexp{T<:AbstractFloat}(x::T, e::Integer)
             return flipsign(T(0.0), x)
         end
         k += significand_bits(T)
-        z = T(2.0)^-significand_bits(T)
+        z = eps(T)
         xu = (xu & ~exponent_mask(T)) | (rem(k, fpinttype(T)) << significand_bits(T))
         return z*reinterpret(T, xu)
     end
